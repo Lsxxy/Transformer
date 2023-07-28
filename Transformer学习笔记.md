@@ -28,7 +28,7 @@
 
 
 
-<img src="C:\Users\12777\AppData\Roaming\Typora\typora-user-images\img-Transformer\image-20230728110253039.png" alt="image-20230728110253039" style="zoom:67%;" />
+<img src="img-Transformer\image-20230728110253039.png" alt="image-20230728110253039" style="zoom:67%;" />
 
 之后，每一个a会计算出一个v，这个v相当于这个向量所包含的信息，之后让我们计算出的α<sup>’</sup>与v相乘，这个就是一个如果我和你关联性大，我就从你那里多抽取一些信息的过程，之后再将从每个a那里抽取出来的信息相加，得到a1对应的b1。
 
@@ -36,13 +36,13 @@
 
 ​	事实上，上述所说的过程，在实际计算时，b1，b2，b3，b4是同步计算过来的，也就是说前面的各个a的q，k，v，α也是同步计算来的，这里用到了矩阵乘法，运算如下图所示。
 
-<img src="C:\Users\12777\AppData\Roaming\Typora\typora-user-images\img-Transformer\image-20230728111637061.png" alt="image-20230728111637061" style="zoom:50%;" />
+<img src="img-Transformer\image-20230728111637061.png" alt="image-20230728111637061" style="zoom:50%;" />
 
 
 
-<img src="C:\Users\12777\AppData\Roaming\Typora\typora-user-images\img-Transformer\image-20230728111729977.png" alt="image-20230728111729977" style="zoom:50%;" />
+<img src="img-Transformer\image-20230728111729977.png" alt="image-20230728111729977" style="zoom:50%;" />
 
-<img src="C:\Users\12777\AppData\Roaming\Typora\typora-user-images\img-Transformer\image-20230728111845553.png" alt="image-20230728111845553" style="zoom:50%;" />
+<img src="img-Transformer\image-20230728111845553.png" alt="image-20230728111845553" style="zoom:50%;" />
 
 
 
@@ -56,7 +56,7 @@
 
 Multi-head Self-attention的计算与Self Attention很类似，比如你有2个头，那就让q，k，v分别乘以两个矩阵，得到q1，q2，k1，k2，v1，v2，然后q1，k1，v1为一组计算Self Attention得到b1，另一组计算出b2，之后将b1和b2合起来乘一个矩阵得到最终b。
 
-​	<img src="C:\Users\12777\AppData\Roaming\Typora\typora-user-images\img-Transformer\image-20230728120946549.png" alt="image-20230728120946549" style="zoom:50%;" />
+​	<img src="img-Transformer\image-20230728120946549.png" alt="image-20230728120946549" style="zoom:50%;" />
 
 
 
@@ -72,7 +72,7 @@ Multi-head Self-attention的计算与Self Attention很类似，比如你有2个�
 
 ​		首先来看Encoder部分。
 
-<img src="C:\Users\12777\AppData\Roaming\Typora\typora-user-images\img-Transformer\image-20230728124814171.png" alt="image-20230728124814171" style="zoom: 50%;" />
+<img src="img-Transformer\image-20230728124814171.png" alt="image-20230728124814171" style="zoom: 50%;" />
 
 ​		Encoder部分由n个上述两层结构组成，其中在第一层首先经过一个Multi-Head Attention，之后会通过一个残差边与原本输入相加，最后经过一个归一化层。
 
@@ -82,11 +82,11 @@ Multi-head Self-attention的计算与Self Attention很类似，比如你有2个�
 
 ​		接下来来看Decoder结构。
 
-<img src="C:\Users\12777\AppData\Roaming\Typora\typora-user-images\img-Transformer\image-20230728145843615.png" alt="image-20230728145843615" style="zoom: 67%;" />
+<img src="img-Transformer\image-20230728145843615.png" alt="image-20230728145843615" style="zoom: 67%;" />
 
 ​		首先来说明上图结构的输入，这个结构的输入是一个随着你不断输出而不断增加的过程，比如一开始什么都没有，就只有一个BOS的符号，这时候就只输入一个BOS的符号，之后呢，Decoder根据你的输入输出了“机”，那么接下来BOS符号和“机”就会一起再次输入进Decoder用来预测第二个字，依此类推，直到最终Decoder输出了END符号，整个预测才会结束。也就是说，Decoder在预测每一个字的时候，都是结合了之前的所有预测结果来进行预测的。下图是一个形象的解释。
 
-<img src="C:\Users\12777\AppData\Roaming\Typora\typora-user-images\img-Transformer\image-20230728150915143.png" alt="image-20230728150915143" style="zoom:50%;" />
+<img src="img-Transformer\image-20230728150915143.png" alt="image-20230728150915143" style="zoom:50%;" />
 
 ​		之后来说明Decoder的结构构成，它的结构与Encoder相差不多，一共有两点区别，第一点是出现了一个Masked Multi Head Attention，第二点是中间的Multi Head Attention当中有两个信息是从Encoder的输出过来的。
 
@@ -94,5 +94,5 @@ Multi-head Self-attention的计算与Self Attention很类似，比如你有2个�
 
 ​		接着说明第二点不同，中间的Multi Head Attention中的两个输入是由Encoder的输出来的，这两个输入会作为k和v，自己这边的这个输入会作为q，之后进行Self Attention的计算，这个过程称为Cross Attention，流程如下图所示。
 
-<img src="C:\Users\12777\AppData\Roaming\Typora\typora-user-images\img-Transformer\image-20230728153142560.png" alt="image-20230728153142560" style="zoom:50%;" />
+<img src="img-Transformer\image-20230728153142560.png" alt="image-20230728153142560" style="zoom:50%;" />
 
