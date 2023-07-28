@@ -20,7 +20,7 @@
 
 ​		Self Attention是一个计算某个向量与其他所有向量关联度的过程 
 
-<img src="C:\Users\12777\AppData\Roaming\Typora\typora-user-images\img-Transformer\image-20230728110049977.png" alt="image-20230728110049977" style="zoom:67%;" />
+<img src="img-Transformer\image-20230728110049977.png" alt="image-20230728110049977" style="zoom:67%;" />
 
 如上图所示，a就是我们要处理的向量组，假如我们要计算a1与其他向量的关联性，我们首先用W<sup>q</sup>
 
